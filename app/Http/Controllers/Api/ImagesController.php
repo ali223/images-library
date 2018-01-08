@@ -62,6 +62,10 @@ class ImagesController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->delete();
+
+        return response()->json([
+            'message' => 'Image Deleted Successfully'
+        ]);
     }
 }

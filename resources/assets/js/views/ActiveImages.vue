@@ -15,6 +15,11 @@
                             </li>
 
                         </ul>
+                        <actions-bar :image-id="getSelectedImageId()" 
+                                    :image-url="getSelectedImageUrl()"
+                                    v-show="selectedImage" @removed="getActiveImages()">
+                                    
+                        </actions-bar>
                     </div>
                 </div>
             </div>
@@ -23,7 +28,9 @@
 </template>
 
 <script>
+    import ActionsBar from '../components/ActionsBar';    
     export default {
+        components: { ActionsBar },
         data() {
             return {
                 activeImages: [],
@@ -31,8 +38,30 @@
             }
         },
         created() {
-            axios.get('/api/images')
-                .then(response => this.activeImages = response.data.data);
+            this.getActiveImages();
+        },
+        methods: {
+            getActiveImages() {
+                axios.get('/api/images')
+                    .then(response => this.activeImages = response.data.data);
+            },
+
+            getSelectedImageId() {
+                if (this.selectedImage) {
+                    return this.selectedImage.id;
+                }
+
+                return null;
+            },
+
+            getSelectedImageUrl() {
+                if (this.selectedImage) {
+                    return this.selectedImage.image_path;
+                }
+
+                return null;
+            }
+
         }
     }
 </script>

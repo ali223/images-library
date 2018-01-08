@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/images', 'Api\ImagesController@index');
+Route::delete('/images/{image}', 'Api\ImagesController@destroy');
