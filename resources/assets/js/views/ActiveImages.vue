@@ -6,7 +6,15 @@
                     <div class="panel-heading">Active Images</div>
 
                     <div class="panel-body">
-                        I'm an active images component!
+                        <ul>
+                            <li v-for="image in activeImages">
+                                <img :class="{selected: selectedImage == image}" 
+                                    :src="image.thumbnail_path" 
+                                    @click="selectedImage = image">
+                                {{ image.title }}
+                            </li>
+
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -16,8 +24,15 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data() {
+            return {
+                activeImages: [],
+                selectedImage: false
+            }
+        },
+        created() {
+            axios.get('/api/images')
+                .then(response => this.activeImages = response.data.data);
         }
     }
 </script>
