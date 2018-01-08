@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\ImageResource;
 use App\Image;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ImagesController extends Controller
 {
@@ -15,7 +16,7 @@ class ImagesController extends Controller
      */
     public function index()
     {
-        return Image::all();
+        return ImageResource::collection(Image::all());
     }
 
     /**
