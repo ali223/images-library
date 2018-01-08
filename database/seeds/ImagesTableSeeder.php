@@ -36,8 +36,8 @@ class ImagesTableSeeder extends Seeder
 
         	factory(Image::class)->create([
         		'title' => $titles[$file],
-        		'image_path' => Storage::url($file),
-        		'thumbnail_path' => Storage::url($thumbnailFileName)
+        		'image_path' => $file,
+        		'thumbnail_path' => $thumbnailFileName
         	]);
         }
     }
