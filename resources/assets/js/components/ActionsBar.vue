@@ -31,8 +31,9 @@ export default {
       					handler: () => { 
       						axios.delete('/api/images/' + this.imageId)
 								.then( () => {
-								this.$emit('removed');		
+									this.$emit('removed');
 								});
+							this.$modal.hide('dialog');
       					}	
     				},
     				{
