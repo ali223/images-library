@@ -13,7 +13,7 @@
 
         <actions-bar :image-id="getSelectedImageId()" 
                     :image-url="getSelectedImageUrl()"
-                    v-show="selectedImage" @removed="getActiveImages()">                    
+                    v-show="selectedImage" @removed="removeImage">                   
         </actions-bar>
     </div>
 </template>
@@ -55,6 +55,11 @@
 
             getGroupedActiveImages() {
                 return _.chunk(this.activeImages, 3);
+            },
+
+            removeImage(id) {
+                this.activeImages = _.reject(this.activeImages, (image) => image.id == id);
+                this.selectedImage = false;
             }
 
         }

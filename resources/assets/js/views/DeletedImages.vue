@@ -10,7 +10,7 @@
         </div>
 
         <restore-bar :image-id="getSelectedImageId()" 
-                    v-show="selectedImage" @restored="getDeletedImages()">
+                    v-show="selectedImage" @restored="removeImage">
                     
         </restore-bar>
     </div>
@@ -54,7 +54,13 @@
 
             getGroupedDeletedImages() {
                 return _.chunk(this.deletedImages, 3);
+            },
+
+            removeImage(id) {
+                this.deletedImages = _.reject(this.deletedImages, (image) => image.id == id);
+                this.selectedImage = false;
             }
+
 
         }
     }

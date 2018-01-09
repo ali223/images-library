@@ -17,7 +17,7 @@ export default {
 
 			axios.patch('/api/deletedimages/' + this.imageId)
 				.then( () => {
-					this.$emit('restored');		
+					this.$emit('restored', this.imageId);
 			});			
 		}
 	}
