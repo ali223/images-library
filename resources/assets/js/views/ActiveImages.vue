@@ -1,29 +1,20 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Active Images</div>
+        <div class="row" v-for="groupedImages in getGroupedActiveImages()">
 
-                    <div class="panel-body">
-                        <ul>
-                            <li v-for="image in activeImages">
-                                <img :class="{selected: selectedImage == image}" 
-                                    :src="image.thumbnail_path" 
-                                    @click="selectedImage = image">
-                                {{ image.title }}
-                            </li>
-
-                        </ul>
-                        <actions-bar :image-id="getSelectedImageId()" 
-                                    :image-url="getSelectedImageUrl()"
-                                    v-show="selectedImage" @removed="getActiveImages()">
-                                    
-                        </actions-bar>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-4 well text-center" v-for="image in groupedImages">
+                <img :class="{selected: selectedImage == image}" 
+                    :src="image.thumbnail_path" 
+                    @click="selectedImage = image">
+                <p>{{ image.title }}</p>                            
+            </div>                    
+        
         </div>
+
+        <actions-bar :image-id="getSelectedImageId()" 
+                    :image-url="getSelectedImageUrl()"
+                    v-show="selectedImage" @removed="getActiveImages()">                    
+        </actions-bar>
     </div>
 </template>
 
@@ -60,8 +51,17 @@
                 }
 
                 return null;
+            },
+
+            getGroupedActiveImages() {
+                return _.chunk(this.activeImages, 3);
             }
 
         }
     }
 </script>
+<style scoped>
+    p {
+        margin-top: 10px;
+    }
+</style>

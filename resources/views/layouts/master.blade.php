@@ -13,11 +13,23 @@
 
     </head>
     <body>
+        <header>
+            <div class="container">
+                <h1>My Library</h1>
+            </div>
+        </header>
+
         <div id="app">
-            <router-link to="/">Active Images</router-link>
-            <router-link to="/deleted">Deleted Images</router-link>
+
+            <nav>
+                <div class="links text-right">
+                    <router-link to="/">Active</router-link>
+                    <router-link to="/deleted">Deleted</router-link>
+                </div>
+            </nav>
 
             <router-view></router-view>
+
         </div>
 
         <script src="/js/app.js"></script>

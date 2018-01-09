@@ -1,30 +1,21 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Deleted Images</div>
-
-                    <div class="panel-body">
-                        <ul>
-                            <li v-for="image in deletedImages">
-                                <img :class="{selected: selectedImage == image}" 
-                                    :src="image.thumbnail_path" 
-                                    @click="selectedImage = image">
-                                {{ image.title }}
-                            </li>
-
-                        </ul>
-                        <restore-bar :image-id="getSelectedImageId()"      
-                                    v-show="selectedImage" @restored="getDeletedImages()">
-                                    
-                        </restore-bar>
-                    </div>
-                </div>
-            </div>
+        <div class="row" v-for="groupedImages in getGroupedDeletedImages()">
+            <div class="col-md-4 well text-center" v-for="image in groupedImages">
+                <img :class="{selected: selectedImage == image}" 
+                    :src="image.thumbnail_path" 
+                    @click="selectedImage = image">
+                <p>{{ image.title }}</p> 
+            </div>                    
         </div>
+
+        <restore-bar :image-id="getSelectedImageId()" 
+                    v-show="selectedImage" @restored="getDeletedImages()">
+                    
+        </restore-bar>
     </div>
 </template>
+
 
 <script>
     import RestoreBar from '../components/RestoreBar';    
@@ -59,8 +50,17 @@
                 }
 
                 return null;
+            },
+
+            getGroupedDeletedImages() {
+                return _.chunk(this.deletedImages, 3);
             }
 
         }
     }
 </script>
+<style scoped>
+p {
+    margin-top: 10px;
+}
+</style>

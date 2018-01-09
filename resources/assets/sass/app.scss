@@ -7,3 +7,37 @@
 img.selected {
 	border: #00f 2px solid;
 }
+
+header {
+	background-color: cyan;
+}
+
+div.links {
+	margin: 20px;
+	padding: 0px;
+
+	a {
+		border: 2px solid lightgrey;
+		padding: 10px;
+		font-size: 20px;
+		background-color: #428bca;
+		color: white;
+		display: inline-block;
+		width: 100px;
+		text-align: center;
+		margin: 0px;
+		text-decoration: none;
+	}
+
+	a.router-link-exact-active {
+		background-color: white;
+		color: blue;
+		text-decoration: none;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+
