@@ -17,5 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/images', 'Api\ImagesController@index');
-Route::delete('/images/{image}', 'Api\ImagesController@destroy');
+Route::get('/images', 'Api\ActiveImagesController@index');
+Route::delete('/images/{image}', 'Api\ActiveImagesController@destroy');

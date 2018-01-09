@@ -7,7 +7,7 @@ use App\Http\Resources\ImageResource;
 use App\Image;
 use Illuminate\Http\Request;
 
-class ImagesController extends Controller
+class ActiveImagesController extends Controller
 {
     /**
      * Display a listing of the resource.
