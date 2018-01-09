@@ -21,3 +21,4 @@ Route::get('/images', 'Api\ActiveImagesController@index');
 Route::delete('/images/{image}', 'Api\ActiveImagesController@destroy');
 
 Route::get('/deletedimages', 'Api\DeletedImagesController@index');
+Route::patch('/deletedimages/{id}', 'Api\DeletedImagesController@restore');

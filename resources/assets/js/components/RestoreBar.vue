@@ -1,26 +1,23 @@
 <template>
 	<div class="alert alert-primary text-center">
-		<a href="#" @click.prevent="remove">
-			<span class="glyphicon glyphicon-remove"></span>
-		</a>
-		<a :href="imageUrl" download>
-			<span class="glyphicon glyphicon-download"></span>
+		<a href="#" @click.prevent="restore()">
+			<span class="glyphicon glyphicon-upload"></span>
 		</a>
 	</div>
 </template>
 
 <script>
 export default {
-	props: ['imageId', 'imageUrl'],
+	props: ['imageId'],
 	methods: {
-		remove() {
+		restore() {
 			if (! this.imageId) {
 				return;
 			}
 
-			axios.delete('/api/images/' + this.imageId)
+			axios.patch('/api/deletedimages/' + this.imageId)
 				.then( () => {
-					this.$emit('removed');		
+					this.$emit('restored');		
 			});			
 		}
 	}
@@ -35,7 +32,8 @@ div {
 	font-size: 20px;
 	font-weight: bold;
 }
+
 div a{
-	color:white;
+	color: white;
 }
 </style>
