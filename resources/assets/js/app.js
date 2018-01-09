@@ -8,11 +8,14 @@
 import './bootstrap';
 
 import VueRouter from 'vue-router';
+import VModal from 'vue-js-modal'
 import router from './routes';
 
 
 window.Vue = require('vue');
+
 Vue.use(VueRouter);
+Vue.use(VModal, { dialog: true });
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
